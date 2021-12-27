@@ -1,0 +1,62 @@
+<div [@slideInOut] class="container mt-5">
+    <div class="row mb-4">
+        <div class="ml-3">
+            <button class="btn btn-outline-dark d-flex justify-content-between align-items-center" (click)="hideDetail()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                </svg>
+                List
+            </button>
+        </div>
+        <div class="col text-center">
+            <h5>{{data.date}}</h5>
+        </div>
+        <div class="mr-3">
+                <a class="btn" target="_blank"
+                    href="https://twitter.com/intent/tweet?text=The Temperature in {{location.city}}, {{location.state}} on {{data.date}} is {{data.temperatureApparent}} °F. The weather conditions are {{codes[data.weatherCode]}}.&hashtags=CSCI571WeatherForecast">
+                    <i [ngStyle]="{'font-size':'25px', 'color': '#00acee'}" class="fab fa-twitter"></i>
+                </a>
+        </div>
+    </div>
+    <table class="table table-striped mx-auto">
+        <tbody>
+            <tr>
+                <th class="col-7 col-sm-4">Status</th>
+                <td>{{codes[data.weatherCode]}}</td>
+            </tr>
+            <tr>
+                <th>Max Temperature</th>
+                <td>{{data.temperatureMax}} ° F</td>
+            </tr>
+            <tr>
+                <th>Min Temperature</th>
+                <td>{{data.temperatureMin}} ° F</td>
+            </tr>
+            <tr>
+                <th>Apparent Temperature</th>
+                <td>{{data.temperatureApparent}} ° F</td>
+            </tr>
+            <tr>
+                <th>Sun Rise Time</th>
+                <td>{{data.sunriseTime}}</td>
+            </tr>
+            <tr>
+                <th>Sun Set Time</th>
+                <td>{{data.sunsetTime}}</td>
+            </tr>
+            <tr>
+                <th>Humidity</th>
+                <td>{{data.humidity}}</td>
+            </tr>
+            <tr>
+                <th>Visibility</th>
+                <td>{{data.visibility}}</td>
+            </tr>
+            <tr>
+                <th>Cloud Cover</th>
+                <td>{{data.cloudCover}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <app-map [center]="center" class="mb-3"></app-map>
+</div>

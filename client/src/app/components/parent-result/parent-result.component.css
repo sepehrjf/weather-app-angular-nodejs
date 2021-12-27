@@ -1,0 +1,9 @@
+@media (max-width: 576px) {
+  div {
+    font-size: 11px;
+  }
+}
+
+#fav-btn {
+  border: 1px solid darkgray;
+}

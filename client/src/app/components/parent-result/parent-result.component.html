@@ -1,0 +1,39 @@
+<div *ngIf="!showDetail">
+    <h5 class="text-center my-4">Forecast at {{location.city}}, {{location.state}}</h5>
+    <div class="container mx-auto d-flex justify-content-end my-3">
+        <button type="button" class="btn" id="fav-btn" (click)="markFavourite()">
+            <i *ngIf="!isFavourite" class="far fa-star"></i>
+            <i *ngIf="isFavourite" [ngStyle]="{'color': '#fcd559'}" class="fas fa-star"></i>
+        </button>
+        <button type="button" class="btn" [disabled]="detailBtnIndex === -1" (click)="showDailyDetail()">
+            Details
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+        </button>
+    </div>
+    
+    <div class="container mb-2">
+        <nav>
+            <div class="nav nav-tabs justify-content-end" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-daily-view-tab" data-toggle="tab" href="#nav-daily-view" role="tab" aria-controls="nav-daily-view" aria-selected="true">Daily View</a>
+                <a class="nav-item nav-link" id="nav-daily-chart-tab" data-toggle="tab" href="#nav-daily-chart" role="tab" aria-controls="nav-daily-chart" aria-selected="false">Daily Temp. Chart</a>
+                <a class="nav-item nav-link" id="nav-meteogram-tab" data-toggle="tab" href="#nav-meteogram" role="tab" aria-controls="nav-meteogram" aria-selected="false">Meteogram</a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-daily-view" role="tabpanel" aria-labelledby="nav-daily-view-tab">
+                <app-weather-daily-view [dailyReport]="dailyReport"></app-weather-daily-view>
+            </div>
+            <div class="tab-pane fade" id="nav-daily-chart" role="tabpanel" aria-labelledby="nav-daily-chart-tab">
+                <app-daily-temperature-chart [dailyReport]="dailyReport"></app-daily-temperature-chart>
+            </div>
+            <div class="tab-pane fade" id="nav-meteogram" role="tabpanel" aria-labelledby="nav-meteogram-tab">
+                <app-weather-daily-view [dailyReport]="dailyReport"></app-weather-daily-view>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<app-weather-detail *ngIf="showDetail" [center]="center" [location]="location" [data]="detailData" ></app-weather-detail>
+    
